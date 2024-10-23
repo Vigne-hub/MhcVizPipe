@@ -139,8 +139,11 @@ class MhcToolHelper:
                                  allele,
                                  all_predictions[allele][pep]['EL_Rank'],
                                  all_predictions[allele][pep]['Binder']])
-            self.binding_predictions = self.binding_predictions.append(
-                pd.DataFrame(columns=['Sample', 'Peptide', 'Allele', 'Rank', 'Binder'], data=rows),
+            self.binding_predictions = pd.concat(
+                [
+                    self.binding_predictions,
+                    pd.DataFrame(columns=['Sample', 'Peptide', 'Allele', 'Rank', 'Binder'], data=rows)
+                ],
                 ignore_index=True
             )
 
